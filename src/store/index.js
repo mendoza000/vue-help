@@ -8,6 +8,8 @@ export default createStore({
   mutations: {
   },
   actions: {
+    tryAutoLogin () {
+    }   
   },
   modules: {
   }
