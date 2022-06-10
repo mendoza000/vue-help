@@ -7,16 +7,17 @@
       <router-link to="/prestamista">Prestamista</router-link> |
       <router-link to="/prestatario">Prestatario</router-link>
     </div>
-    <router-view/>
+    <router-view v-slot="{ Component }">
+      <suspense>
+        <component :is="Component" />
+      </suspense>
+    </router-view>
   </div>
 </template>
 
 <script>
   export default {
     name: 'app',
-    created () {
-      this.$store.dispatch('tryAutoLogin')
-    }
   }
 </script>
 

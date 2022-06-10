@@ -65,12 +65,12 @@
                   id="apellido"
                   v-model="apellido">
           </div>
-              <input
+              <!-- <input
                   type="email"
                   placeholder="Email"
                   id="email"
                   @blur="$v.email.$touch()"
-                  v-model="email">
+                  v-model="email"> -->
         </div>
       
         <div class="input" :class="{invalid: $v.password.$error}">
@@ -129,8 +129,6 @@
 
 <script>
 
-import { required, email, minLength,} from 'vuelidate/lib/validators'
-  import axios from 'axios'
 export default {
     data () {
       return {
@@ -158,22 +156,5 @@ export default {
         this.$store.dispatch('RegistroView', RegistroViewData)
       }
      },
-     validations: {
-      email: {
-        required,
-        email,
-        unique: val => {
-          if (val === '') return true
-          return axios.get('https://app-pagos-prestamos-default-rtdb.firebaseio.com/users.json?orderBy="email"&equalTo="' + val + '"')
-            .then(res => {
-              return Object.keys(res.data).length === 0
-            })
-        }
-      },
-      password: {
-        required,
-        minLen: minLength(6)
-      },
-    }
 }
 </script>
